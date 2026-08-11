@@ -13,7 +13,7 @@ services:
 
   backend:
     build: ./apps/backend
-    command: npm run start:dev
+    command: sh -c "npx prisma generate && npm run start:dev"
     env_file: ./apps/backend/.env
     depends_on:
       - db
@@ -24,6 +24,7 @@ services:
       - "${BACKEND_PORT}:${BACKEND_PORT}"
     volumes:
       - ./apps/backend:/app
+      - /app/node_modules
       - ./apps/backend/prisma:/app/prisma
 
   frontend:
@@ -36,6 +37,7 @@ services:
       - "${FRONTEND_PORT}:${FRONTEND_PORT}"
     volumes:
       - ./apps/frontend:/app
+      - /app/node_modules
 
 volumes:
   postgres_data:
