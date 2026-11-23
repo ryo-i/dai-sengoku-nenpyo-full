@@ -116,6 +116,9 @@ dist
 # Serverless directories
 .serverless/
 
+# Vercel local link
+.vercel
+
 # FuseBox cache
 .fusebox/
 
@@ -134,3 +137,4 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+.DS_Store

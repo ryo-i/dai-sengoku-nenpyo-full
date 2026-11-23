@@ -1,3 +1,9 @@
 #!/bin/sh
 
 npx lint-staged
+
+echo "Running backend unit tests..."
+npm run test --workspace=apps/backend
+
+echo "Running frontend unit tests..."
+npm run test --workspace=apps/frontend

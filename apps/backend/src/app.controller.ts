@@ -1,21 +1,18 @@
 import { Controller, Get } from '@nestjs/common';
-import { AppService } from './app.service';
+import { ApiOkResponse, ApiOperation } from '@nestjs/swagger';
 
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) {}
-
-  @Get('health')
-  getHealth() {
-    return { status: 'ok' };
-  }
-
-  @Get('persons')
-  async getPersons() {
-    return await this.appService.getPersons();
-  }
-
+  /**
+   * ルートメッセージを返します。
+   */
   @Get()
+  @ApiOperation({ summary: 'ルートメッセージを返す' })
+  @ApiOkResponse({
+    schema: {
+      example: { message: 'Welcome to the API!' },
+    },
+  })
   getRoot() {
     return { message: 'Welcome to the API!' };
   }

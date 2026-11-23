@@ -1,0 +1,118 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/": {
+      "get": {
+        "operationId": "AppController_getRoot",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "example": {
+                    "message": "Welcome to the API!"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "summary": "ルートメッセージを返す",
+        "tags": ["App"]
+      }
+    },
+    "/persons": {
+      "get": {
+        "operationId": "PersonsController_getPersons",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Person"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "summary": "人物一覧を取得する",
+        "tags": ["persons"]
+      },
+      "post": {
+        "operationId": "PersonsController_createPerson",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreatePersonDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Person"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Validation failed"
+          }
+        },
+        "summary": "人物を作成する",
+        "tags": ["persons"]
+      }
+    }
+  },
+  "info": {
+    "title": "NextNest API",
+    "description": "Next.js + NestJS starter kit API",
+    "version": "1.0",
+    "contact": {}
+  },
+  "tags": [],
+  "servers": [],
+  "components": {
+    "schemas": {
+      "Person": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number",
+            "example": 1
+          },
+          "name": {
+            "type": "string",
+            "example": "織田信長"
+          }
+        },
+        "required": ["id", "name"]
+      },
+      "CreatePersonDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "織田信長",
+            "description": "人物名"
+          }
+        },
+        "required": ["name"]
+      }
+    }
+  }
+}

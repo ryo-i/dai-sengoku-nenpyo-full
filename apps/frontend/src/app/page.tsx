@@ -1,4 +1,4 @@
-import Persons from "./components/Persons";
+import { Persons } from "@/features/persons";
 
 export default function Home() {
   return (

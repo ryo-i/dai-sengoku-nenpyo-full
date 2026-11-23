@@ -2,17 +2,17 @@ FROM node:20-alpine
 
 WORKDIR /app
 
-COPY package*.json ./
+COPY package.json package-lock.json ./
+COPY apps/backend/package.json apps/backend/package.json
+COPY apps/frontend/package.json apps/frontend/package.json
 
-RUN npm install
+ENV HUSKY=0
+RUN npm ci --workspace=frontend --include-workspace-root
 
-COPY . .
+COPY apps/frontend apps/frontend
 
-# 本番ではビルドを実行
-# RUN npm run build
+WORKDIR /app/apps/frontend
 
 EXPOSE 3000
 
 CMD ["npm", "run", "dev"]
-# 本番用のコマンド
-# CMD ["npm", "start"]
